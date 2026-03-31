@@ -1,0 +1,22 @@
+import express from 'express'
+import { getAllTasks, createNewTask, updateTask, deleteTask} from '../../controllers/taskController.js'
+import { authMiddleware } from '../../utils/auth'
+
+const router = express.Router()
+
+// Apply authMiddleware to all routes in the file
+router.use(authMiddleware);
+
+// GET /api/projects/:projectId/tasks - Get all tasks belong a projectId for the logged-in user
+router.get('/:projectId/tasks', getAllTasks);
+
+// POST /api/projects/:projectId/tasks - Create a new task
+router('/:projectId/tasks', createNewTask);
+
+// PUT /api/tasks/:taskId - Update a task
+router.put('/:taskId', updateTask);
+
+// DELETE /api/tasks/:taskId - Delete a task
+router.delete('/:taskId', deleteTask);
+
+export default router;
