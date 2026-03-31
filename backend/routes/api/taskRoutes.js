@@ -1,6 +1,6 @@
 import express from 'express'
 import { getAllTasks, createNewTask, updateTask, deleteTask} from '../../controllers/taskController.js'
-import { authMiddleware } from '../../utils/auth'
+import { authMiddleware } from '../../utils/auth.js'
 
 const router = express.Router()
 
@@ -11,7 +11,7 @@ router.use(authMiddleware);
 router.get('/:projectId/tasks', getAllTasks);
 
 // POST /api/projects/:projectId/tasks - Create a new task
-router('/:projectId/tasks', createNewTask);
+router.post('/:projectId/tasks', createNewTask);
 
 // PUT /api/tasks/:taskId - Update a task
 router.put('/:taskId', updateTask);
