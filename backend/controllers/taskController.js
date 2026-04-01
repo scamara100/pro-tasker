@@ -23,6 +23,7 @@ const getAllTasks = async (req, res) => {
         const tasks = await Task.find({ project: projectId }).populate('project')
         res.json(tasks)
     } catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 }
@@ -49,6 +50,7 @@ const createNewTask = async (req, res) => {
         })
         res.status(201).json(task)
     } catch(err){
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -70,14 +72,15 @@ const updateTask = async (req, res) => {
 
         // compare the task's user id with the logged in user's id 
         // if they don't match, it's not our task and we shouldn't be able to update it
-        if(!project || project.owner.toString() !== req.user.id){
-            res.status(403).json({ message: ' User is not authorized to update this task.'})
+        if(!project || project.owner !== req.user.id){
+            return res.status(403).json({ message: ' User is not authorized to update this task.'})
         }
 
         // update task 
-        const updateTask = await Task.findByIdAndUpdate(taskId, req.body, { new: true})
+        const updateTask = await Task.findByIdAndUpdate(taskId, req.body, { returnDocument: 'after'})
         res.json(updateTask)
     } catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 }
@@ -98,14 +101,15 @@ const deleteTask = async (req, res) => {
 
         // compare the task's user id with the logged in user's id 
         // if they don't match, it's not our task and we shouldn't be able to delete it
-        if(!project || project.owner.toString() !== req.user.id){
-            res.status(403).json({ message: ' User is not authorized to delete this task.'})
+        if(!project || project.owner !== req.user.id){
+            return res.status(403).json({ message: ' User is not authorized to delete this task.'})
         }
 
         // delete task 
-        await Task.findByIdAndDelete(req.params.id)
+        await Task.deleteOne()
         res.json({ message: 'task deleted!'})
     } catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 } 

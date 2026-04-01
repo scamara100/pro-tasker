@@ -7,6 +7,7 @@ const createNewUser = async (req, res) => {
         const token = signToken(user)
         res.status(201).json({ token, user})
     } catch(err){
+        console.log(err)
         res.status(400).json(err)
     }
 }

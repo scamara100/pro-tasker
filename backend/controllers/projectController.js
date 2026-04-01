@@ -10,6 +10,7 @@ const getAllProjects = async (req, res) => {
         const projects = await Project.find({ user: req.user._id }).populate('user')
         res.json(projects)
     } catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 }
@@ -19,10 +20,11 @@ const createNewProject = async (req, res) => {
     try{
         const project = await Project.create({
             ...req.body,
-            user: req.body._id
+            user: req.user._id
         })
         res.status(201).json(project)
     } catch(err){
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -44,9 +46,10 @@ const updateProject = async (req, res) => {
         }
 
         // update project 
-        const updateproject = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true})
+        const updateproject = await Project.findByIdAndUpdate(req.params.id, req.body, { returnDocument: 'after'})
         res.json(updateProject)
     } catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 }
@@ -71,6 +74,7 @@ const deleteProject = async (req, res) => {
         await Project.findByIdAndDelete(req.params.id)
         res.json({ message: 'project deleted!'})
     } catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 } 
