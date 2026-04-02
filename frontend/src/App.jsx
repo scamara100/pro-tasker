@@ -1,8 +1,9 @@
 import './App.css'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Feed from './pages/Feed'
-import Navbar from './components/NavBar'
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
+import Navbar from './components/layout/NavBar.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import ProjectPage from './pages/ProjectPage.jsx'
 import { Route, Routes } from 'react-router-dom'
 
 
@@ -14,9 +15,10 @@ function App() {
       <Navbar />
       
       <Routes>
-        <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
-        <Route path='/feed' element={<Feed />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/dashboard' element={<Dashboard />}/>
+        <Route path='/projectpage' element={<ProjectPage />}/>
       </Routes>
     </>
   )
