@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { userClient} from '../clients/api.js'
+import { userClient } from '../clients/api.js'
 import { useUser } from "../context/useUser.js";
 import { useNavigate } from "react-router-dom";
 
@@ -41,7 +41,7 @@ function Register() {
         setUser(response.data.user)
 
         // take the user to the different pages 
-        navigate('/feed')
+        navigate('/dashboard')
         
       } catch(err){
         console.log(err)
