@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+export const getToken = localStorage.getItem('token')
 export const userClient = axios.create({
     baseURL: 'http://localhost:8080/api/users'
 })
@@ -9,10 +10,8 @@ export const projectClient = axios.create({
 })
 
 projectClient.interceptors.request.use((req) =>{
-    const token = localStorage.getItem('token')
+    
 
-    if(token){
-        req.headers.Authorization =  `Bearer ${token}`
-    }
+    if(getToken()) req.headers.Authorization =  `Bearer ${getToken()}`
     return req;
 })
