@@ -17,9 +17,9 @@ function AppRoutes() {
       <Navbar />
       {user ? 
       <Routes>
-        <Route path='/dashboard' element={<Dashboard />}/>
-        <Route path='/projectpage' element={<ProjectPage />}/>
-        <Route path='/*' element={<Navigate to="/Dashboard" />}/>
+        <Route path='/' element={<Dashboard />}/>
+        <Route path='/projects/:id' element={<ProjectPage />}/>
+        <Route path='/*' element={<Navigate to="/" />}/>
       </Routes>:
       <Routes>
         <Route path='/login' element={<Login />}/>
