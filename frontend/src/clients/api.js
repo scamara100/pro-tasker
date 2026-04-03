@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export const getToken = () => localStorage.getItem('token') 
 
+// create axios instance
 export const userClient = axios.create({
     baseURL: 'http://localhost:8080/api/users',
     headers: {

@@ -40,7 +40,7 @@ function Login() {
         setUser(response.data.user)
 
         // take the user to the different pages 
-        navigate('/dashboard')
+        navigate('/')
         
       } catch(err){
         console.log(err)

@@ -5,6 +5,7 @@ import Dashboard from '../pages/Dashboard.jsx'
 import ProjectPage from '../pages/ProjectPage.jsx'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { useUser } from '../context/useUser.js'
+import ProtectedRoute from '../components/layout/ProtectedRoute.jsx'
 
 
 function AppRoutes() {
@@ -17,8 +18,8 @@ function AppRoutes() {
       <Navbar />
       {user ? 
       <Routes>
-        <Route path='/' element={<Dashboard />}/>
-        <Route path='/projects/:id' element={<ProjectPage />}/>
+        <Route path='/' element={<ProtectedRoute> <Dashboard /> </ProtectedRoute> }/>
+        <Route path='/projects/:id' element={<ProtectedRoute> <ProjectPage /></ProtectedRoute> }/>
         <Route path='/*' element={<Navigate to="/" />}/>
       </Routes>:
       <Routes>
