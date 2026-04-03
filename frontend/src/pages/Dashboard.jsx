@@ -14,6 +14,13 @@ function Dashboard() {
       // make a post resquet to create a project (based of the state: name, description)
       const { data } = await projectClient.post('/', {name, description})
       console.log(data)
+
+      // add now project to my state
+      setProject([...projects, data])
+
+      // reset my form 
+      setName('')
+      setDescription('')
     } catch(err){
       console.log(err)
     }
