@@ -1,4 +1,5 @@
 import Project from "../models/Project.js";
+import Task from "../models/Task.js";
 
 // Get all projects for the logged-in user
 const getAllProjects = async (req, res) => {
@@ -16,6 +17,28 @@ const getAllProjects = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+// GET /api/projects/:id
+const getSingleProject = async (req, res) =>{
+
+  try{
+    console.log("PROJECT ID:", req.params.id);
+    console.log("USER:", req.user);
+
+    const project = await Project.findOne({_id: req.params.id, user: req.user._id})
+   
+    if(!project){
+      return res.status(404).json({ message: "Project not found" })
+    }
+    // if I have tasks
+    const tasks = await Task.find({project: project._id})
+    res.json({project, tasks})
+  } catch (err) {
+    console.log("FULL ERROR:", err);
+    console.log("MESSAGE:", err.message);
+    res.status(500).json({ message: err.message });
+}
+} 
 
 // create a new project
 const createNewProject = async (req, res) => {
@@ -45,7 +68,7 @@ const updateProject = async (req, res) => {
 
     // compare the project's user id with the logged in user's id
     // if they don't match, it's not our project and we shouldn't be able to update it
-    if (foundProject.user.toString() !== req.user._id) {
+    if (foundProject.user.toString() !== req.user._id.toString()) {
       res
         .status(403)
         .json({ message: " User is not authorized to update this project." });
@@ -57,7 +80,7 @@ const updateProject = async (req, res) => {
       req.body,
       { returnDocument: "after" },
     );
-    res.json(updateProject);
+    res.json(updateproject);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -78,7 +101,7 @@ const deleteProject = async (req, res) => {
 
     // compare the project's user id with the logged in user's id
     // if they don't match, it's not our project and we shouldn't be able to update it
-    if (foundProject.user.toString() !== req.user._id) {
+    if (foundProject.user.toString() !== req.user._id.toString()) {
       res
         .status(403)
         .json({ message: " User is not authorized to delete this project." });
@@ -93,4 +116,4 @@ const deleteProject = async (req, res) => {
   }
 };
 
-export { getAllProjects, createNewProject, updateProject, deleteProject };
+export { getAllProjects, getSingleProject, createNewProject, updateProject, deleteProject };

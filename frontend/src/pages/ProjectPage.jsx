@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { projectClient } from "../clients/api";
-import {TaskCard} from "../components/tasks/TaskCard";
+import TaskCard from "../components/tasks/TaskCard";
 
 function ProjectPage() {
   const { id } = useParams();
@@ -12,7 +12,8 @@ function ProjectPage() {
   useEffect(() => {
     async function fetchProject() {
       try {
-        const { data } = await projectClient.get(`/projects/${id}`);
+        const { data } = await projectClient.get(`/${id}`);
+        console.log(data)
         setProject(data.project);
         setTasks(data.tasks);
       } catch (err) {
@@ -24,6 +25,7 @@ function ProjectPage() {
   }, [id]);
 
   if (!project) return <h2>Loading...</h2>;
+
   return (
     <div>
       <h1>Project Page</h1>

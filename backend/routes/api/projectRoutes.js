@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getAllProjects,
+  getSingleProject,
   createNewProject,
   updateProject,
   deleteProject,
@@ -14,6 +15,9 @@ router.use(authMiddleware);
 
 // GET /api/projects - Get all projects for the logged-in user
 router.get("/", getAllProjects);
+
+// GET /api/projects/:id
+router.get('/:id', getSingleProject);
 
 // POST /api/projects - Create a new project
 router.post("/", createNewProject);
