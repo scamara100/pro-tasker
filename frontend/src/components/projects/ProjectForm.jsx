@@ -16,31 +16,38 @@ function ProjectForm({ onAdd}) {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <h2>leave a project here:</h2>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, [e.target.name]: e.target.value })
-          }
-        />
-
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          id="description"
-          value={form.description}
-          onChange={(e) =>
-            setForm({ ...form, [e.target.name]: e.target.value })
-          }
-        />
-
-        <button type="submit">Send</button>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            placeholder="Construction"
+            type="text"
+            name="name"
+            id="name"
+            value={form.name}
+            onChange={(e) =>
+              setForm({ ...form, [e.target.name]: e.target.value })
+            }
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <input
+            placeholder="A construction description..."
+            type="text"
+            name="description"
+            id="description"
+            value={form.description}
+            onChange={(e) =>
+              setForm({ ...form, [e.target.name]: e.target.value })
+            }
+            required
+          />
+        </div>
+        <button>Send</button>
       </form>
     </div>
   );

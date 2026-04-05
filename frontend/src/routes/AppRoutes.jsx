@@ -19,7 +19,7 @@ function AppRoutes() {
       {user ? 
       <Routes>
         <Route path='/' element={<ProtectedRoute> <Dashboard /> </ProtectedRoute> }/>
-        <Route path='/:id' element={<ProtectedRoute> <ProjectPage /></ProtectedRoute> }/>
+        <Route path='/projects/:id' element={<ProtectedRoute> <ProjectPage /></ProtectedRoute> }/>
         <Route path='/*' element={<Navigate to="/" />}/>
       </Routes>:
       <Routes>

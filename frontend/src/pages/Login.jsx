@@ -1,68 +1,88 @@
 import { useState } from "react";
-import { userClient} from '../clients/api.js'
+import { userClient } from "../clients/api.js";
 import { useUser } from "../context/useUser.js";
 import { useNavigate } from "react-router-dom";
 
-
 function Login() {
-
   // bring the setter function for the context
-  const {setUser} = useUser()
+  const { setUser } = useUser();
 
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
 
-  function handleChange(e){
+  function handleChange(e) {
     setForm({
       ...form,
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   }
 
-  async function handleSubmit(e){
-      e.preventDefault()
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-      console.log(form)
+    console.log(form);
 
-      try{
-        // send the form data to our backend
-        const response = await userClient.post('/login', form)
-        console.log(response.data)
+    try {
+      // send the form data to our backend
+      const response = await userClient.post("/login", form);
+      console.log(response.data);
 
-        // take the token and stored it locally
-        localStorage.setItem('token', response.data.token)
+      // take the token and stored it locally
+      localStorage.setItem("token", response.data.token);
 
-        // save some user data in our state
-        setUser(response.data.user)
+      // save some user data in our state
+      setUser(response.data.user);
 
-        // take the user to the different pages 
-        navigate('/')
-        
-      } catch(err){
-        console.log(err)
-            alert(err.message)
-      }
-
+      // take the user to the different pages
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
     }
+  }
   return (
     <div>
-    <h1>Login Page</h1>
-    <form onSubmit={handleSubmit}>
-    
-      <label htmlFor="email">Email</label>
-      <input onChange={handleChange} value={form.email} id="email" name="email" type="email" />
-
-      <label htmlFor="password">Password</label>
-      <input onChange={handleChange} value={form.password} id="password" name="password" type="password" />
-
-    <button>Login</button>
-    </form>
+      <h1>Login Page</h1>
+      <form id="registrationForm" noValidate onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            onChange={handleChange}
+            value={form.email}
+            id="email"
+            name="email"
+            type="email"
+            placeholder="example@email.com"
+            required
+          />
+          <span className="error-message" id="emailError"></span>
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            onChange={handleChange}
+            value={form.password}
+            id="password"
+            name="password"
+            type="password"
+            minLength="8"
+            placeholder="Enter a new password"
+            required
+          />
+          <small>
+            Password must be at least 8 characters long, include an uppercase
+            letter, a lowercase letter, and a number.
+          </small>
+          <span className="error-message" id="passwordError"></span>
+        </div>
+        <button type="submit">Register</button>
+      </form>
     </div>
-)
+  );
 }
 
 export default Login;

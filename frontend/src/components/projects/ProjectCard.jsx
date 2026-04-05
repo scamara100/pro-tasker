@@ -13,7 +13,7 @@ function ProjectCard({ project, onUpdate, onDelete }) {
         width: "300px",
         cursor: "pointer",
       }}
-      onClick={() => navigate(`/${project._id}`)}
+      onClick={() => navigate(`/projects/${project._id}`)}
     >
       <div>
         {date.toLocaleDateString()} {date.toLocaleTimeString()}

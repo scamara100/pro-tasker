@@ -27,7 +27,7 @@ function Navbar() {
           </>
         )}
       </ul>
-      {user && <li>Welcome {user.username}</li>}
+      {user && <span>Welcome {user.username}</span>}
     </nav>
   );
 }
