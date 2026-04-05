@@ -22,6 +22,7 @@ export default function TaskForm({onAdd}){
 
             <label htmlFor="description">Description</label>
             <input type="text" placeholder="read a Book." name="description" value={form.description} onChange={(e) =>setForm({...form, [e.target.name]: e.target.value})}/>
+            <button>Add</button>
         </form>
     )
 }
