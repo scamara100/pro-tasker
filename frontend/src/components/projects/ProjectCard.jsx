@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-function ProjectCard({ project }) {
+function ProjectCard({ project, onUpdate, onDelete }) {
   const navigate = useNavigate();
   const date = new Date(project.createdAt);
   return (
@@ -20,6 +20,10 @@ function ProjectCard({ project }) {
       </div>
       <h3>{project.name}</h3>
       <p>{project.description}</p>
+
+      <button onClick={() => onUpdate(project._id)}>Update</button>
+
+      <button onClick={() => onDelete(project._id)}>Delete</button>
     </div>
   );
 }
