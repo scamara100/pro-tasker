@@ -12,9 +12,6 @@ function Navbar() {
             <li>
               <Link to="/">Dashboard</Link>
             </li>
-            <li>
-              <Link to="/projects/:id">Project Page</Link>
-            </li>
             <li onClick={logout}>
               <Link to="/login">Logout</Link>
             </li>
