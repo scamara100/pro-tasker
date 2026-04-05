@@ -1,16 +1,106 @@
-# React + Vite
+![React](https://img.shields.io/badge/Frontend-React-blue)
+![Node](https://img.shields.io/badge/Backend-Node.js-green)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##🚀 Pro-Tasker App##
+#📌 Description#
 
-Currently, two official plugins are available:
+Pro-Tasker is a full-stack project management application that allows users to create, manage, and track projects and tasks efficiently.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Users can:
 
-## React Compiler
+Register and log in securely using JWT authentication
+Create, update, and delete projects
+Manage tasks within each project
+Organize tasks by status (To Do, In Progress, Done)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This app demonstrates full-stack development using modern technologies including React, Node.js, Express, and MongoDB.
 
-## Expanding the ESLint configuration
+🛠️ Tech Stack
+Frontend
+React (Vite)
+React Router
+Axios
+Context API (Authentication)
+Backend
+Node.js
+Express.js
+MongoDB (Mongoose)
+JWT Authentication
+⚙️ Setup & Installation
+1. Clone the repository
+git clone https://github.com/your-username/pro-tasker.git
+cd pro-tasker
+2. Backend Setup
+cd backend
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Create a .env file in the backend folder:
+
+PORT=8080
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+
+Run the backend server:
+
+npm run dev
+3. Frontend Setup
+cd ../frontend
+npm install
+
+Run the frontend:
+
+npm run dev
+4. Open the App
+
+Visit:
+
+http://localhost:5173
+🔐 Authentication
+
+This app uses JWT-based authentication:
+
+Token is stored in localStorage
+Sent in headers for protected routes:
+Authorization: Bearer <token>
+📡 API Endpoints
+👤 User Routes (/api/users)
+Method	Endpoint	Description
+POST	/register	Register a new user
+POST	/login	Login user and return JWT
+GET	/	Get current authenticated user
+📁 Project Routes (/api/projects)
+Method	Endpoint	Description
+GET	/	Get all projects for logged-in user
+POST	/	Create a new project
+GET	/:id	Get a single project with tasks
+PUT	/:id	Update a project
+DELETE	/:id	Delete a project
+✅ Task Routes (/api/projects/:projectId/tasks)
+Method	Endpoint	Description
+POST	/	Create a new task in a project
+PUT	/:taskId	Update a task
+DELETE	/:taskId	Delete a task
+🧠 Features
+🔐 Secure authentication with JWT
+📁 Project management (CRUD)
+✅ Task management within projects
+📊 Task status organization (Kanban-style)
+⚡ Fast and responsive UI
+🚧 Future Improvements
+Drag-and-drop task board (like Trello)
+Task due dates and priorities
+User collaboration (shared projects)
+Notifications system
+👨‍💻 Author
+
+Sekouba CAMARA
+
+📄 License
+
+This project is open-source and available under the MIT License.
+
+![Dashboard](./screenshots/dashboard.png)
+![Project Page](./screenshots/project-page.png)
+![Login](./screenshots/login.png)
+![Register](./screenshots/register.png)
