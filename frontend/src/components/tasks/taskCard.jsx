@@ -3,8 +3,11 @@ function TaskCard({ task, onUpdate, onDelete }) {
     <div
       style={{
         border: "1px solid gray",
-        padding: "8px",
         margin: "5px",
+        background: "#f4f4f4",
+        padding: "10px",
+        borderRadius: "8px",
+        width: "300px"
       }}
     >
         <h4>{task.title}</h4>

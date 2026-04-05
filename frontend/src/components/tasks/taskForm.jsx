@@ -1,28 +1,52 @@
 import { useState } from "react";
 
-export default function TaskForm({onAdd}){
-    const [form, setForm] = useState({title: "", description: "", status: 'todo'})
+export default function TaskForm({ onAdd }) {
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    status: "todo",
+  });
+  const [status, setStatus] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    if (!form.title) return;
 
-        if (!form.title) return;
+    // add object form task
+    onAdd(form);
 
-        // add object form task
-        onAdd(form);
+    // reset form
+    setForm({ title: "", description: "", status: "todo" });
+  };
 
-        // reset form
-        setForm({title: "", description: "", status: 'todo'});
-    } 
-    
-    return(
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Title</label>
-            <input type="text" id="title" placeholder="Reading" name="title" value={form.title} onChange={(e) =>setForm({...form, [e.target.name]: e.target.value})}/>
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        placeholder="Reading"
+        name="title"
+        value={form.title}
+        onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
+      />
 
-            <label htmlFor="description">Description</label>
-            <input type="text" id="description" placeholder="read a Book." name="description" value={form.description} onChange={(e) =>setForm({...form, [e.target.name]: e.target.value})}/>
-            <button>Add</button>
-        </form>
-    )
+      <label htmlFor="description">Description</label>
+      <input
+        type="text"
+        id="description"
+        placeholder="read a Book."
+        name="description"
+        value={form.description}
+        onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
+      />
+
+      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+        <option value="todo">To Do</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+      <button>Add Task</button>
+    </form>
+  );
 }
