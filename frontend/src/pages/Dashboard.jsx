@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { projectClient } from "../clients/api";
 import ProjectForm from "../components/projects/ProjectForm";
 import ProjectList from "../components/projects/ProjectList";
-import { useParams } from "react-router-dom";
+
 
 
 function Dashboard() {
-  const { id } = useParams();
   const [projects, setProjects] = useState([])
   useEffect(() => {
     async function fetchProjects() {
@@ -39,14 +38,15 @@ function Dashboard() {
   }
 
   // Update a project
-  const handleUpdateProject = async (updateProject) => {
+  const handleUpdateProject = async (projectId, updates) => {
     try{
       // make a put resquet to update a project (based of the state: name, description)
-      const { data } = await projectClient.put(`/${id}`, updateProject);
+      const { data } = await projectClient.put(`/${projectId}`, updates);
+
       console.log(data);
 
       // update now project to my state and update UI instantly
-      setProjects((prev) => prev.map(project => project._id !== id ? {...project, ...updateProject}: project));
+      setProjects((prev) => prev.map(project => project._id === projectId ? data : project));
     } catch(err){
       console.log(err.response?.data || err.message)
     }
@@ -54,14 +54,14 @@ function Dashboard() {
   }
 
   // Delete a project
-  const handleDeleteProject = async () => {
+  const handleDeleteProject = async (projectId) => {
     try{
       // make a post delete to delete a project 
-      await projectClient.delete(`/${id}`);
+      await projectClient.delete(`/${projectId}`);
       
 
       // add now project to my state and update UI instantly
-      setProjects((prev) => prev.filter(project => project._id !== id));
+      setProjects((prev) => prev.filter(project => project._id !== projectId));
     } catch(err){
       console.log(err.response?.data || err.message)
     }

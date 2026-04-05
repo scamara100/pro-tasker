@@ -21,9 +21,28 @@ function ProjectCard({ project, onUpdate, onDelete }) {
       <h3>{project.name}</h3>
       <p>{project.description}</p>
 
-      <button onClick={() => onUpdate(project._id)}>Update</button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          const name = prompt("New project name:", project.name);
+          const description = prompt("New description:", project.description);
 
-      <button onClick={() => onDelete(project._id)}>Delete</button>
+          if (!name || !description) return;
+
+          onUpdate(project._id, { name, description });
+        }}
+      >
+        Update
+      </button>
+
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete(project._id);
+        }}
+      >
+        Delete
+      </button>
     </div>
   );
 }
