@@ -59,6 +59,10 @@ function ProjectPage() {
 
   if (!project) return <h2>Loading...</h2>;
 
+  const todoTasks = tasks.filter(t => t.status === "todo");
+  const inProgressTasks = tasks.filter(t => t.status === "in-progress");
+  const doneTasks = tasks.filter(t => t.status === "done");
+
   return (
     <div>
       <h1>Project Page</h1>
@@ -71,9 +75,33 @@ function ProjectPage() {
       {/* Add task */}
       <TaskForm onAdd={handleAddTask}/>
 
-      {tasks.map((task) => (
-        <TaskCard key={task._id} task={task} onUpdate={handleUpdateTask} onDelete={handleDeleteTask}/>
-      ))}
+      <div style={{ display: "flex", gap: "20px" }}>
+  
+  {/* TODO */}
+  <div>
+    <h3>To Do</h3>
+    {todoTasks.map(task => (
+      <TaskCard key={task._id} task={task} onUpdate={handleUpdateTask} onDelete={handleDeleteTask}/>
+    ))}
+  </div>
+
+  {/* IN PROGRESS */}
+  <div>
+    <h3>In Progress</h3>
+    {inProgressTasks.map(task => (
+      <TaskCard key={task._id} task={task} onUpdate={handleUpdateTask} onDelete={handleDeleteTask}/>
+    ))}
+  </div>
+
+  {/* DONE */}
+  <div>
+    <h3>Done</h3>
+    {doneTasks.map(task => (
+      <TaskCard key={task._id} task={task} onUpdate={handleUpdateTask} onDelete={handleDeleteTask}/>
+    ))}
+  </div>
+
+</div>
     </div>
   );
 }
