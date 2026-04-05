@@ -18,10 +18,10 @@ export default function TaskForm({onAdd}){
     return(
         <form onSubmit={handleSubmit}>
             <label htmlFor="title">Title</label>
-            <input type="text" placeholder="Reading" name="title" value={form.title} onChange={(e) =>setForm({...form, [e.target.name]: e.target.value})}/>
+            <input type="text" id="title" placeholder="Reading" name="title" value={form.title} onChange={(e) =>setForm({...form, [e.target.name]: e.target.value})}/>
 
             <label htmlFor="description">Description</label>
-            <input type="text" placeholder="read a Book." name="description" value={form.description} onChange={(e) =>setForm({...form, [e.target.name]: e.target.value})}/>
+            <input type="text" id="description" placeholder="read a Book." name="description" value={form.description} onChange={(e) =>setForm({...form, [e.target.name]: e.target.value})}/>
             <button>Add</button>
         </form>
     )

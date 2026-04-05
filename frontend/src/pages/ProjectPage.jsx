@@ -27,21 +27,34 @@ function ProjectPage() {
 
 
   // create Task
-    const handleAddTask = async (projectId, taskData) => {
-      const { data } = await projectClient.post(`/${projectId}/tasks`, taskData);
-      setTasks((prev) => [data, ...prev])
+    const handleAddTask = async (taskData) => {
+      try{
+        const { data } = await projectClient.post(`/${id}/tasks`, taskData);
+        setTasks((prev) => [data, ...prev])
+      } catch(err){
+        console.log(err.response?.data || err.message)
+      }
+      
     }
 
     // update Task
-    const handleUpdateTask = async (projectId, taskId, update) => {
-      await projectClient.put(`/${projectId}/tasks/${taskId}`, update);
-      setTasks((prev) => prev.map((task) => task._id === taskId ? { ...task, ...update}: task));
+    const handleUpdateTask = async (taskId, update) => {
+      try{
+         await projectClient.put(`/${id}/tasks/${taskId}`, update);
+        setTasks((prev) => prev.map((task) => task._id === taskId ? { ...task, ...update}: task));
+      } catch(err){
+        console.log(err.response?.data || err.message)
+      }
     }
 
     // delete Task
-    const handleDeleteTask = async (projectId, taskId) => {
-       await projectClient.delete(`/${projectId}/tasks/${taskId}`);
-      setTasks((prev) => prev.filter((task) => task._id !== taskId));
+    const handleDeleteTask = async (taskId) => {
+      try{
+        await projectClient.delete(`/${id}/tasks/${taskId}`);
+        setTasks((prev) => prev.filter((task) => task._id !== taskId));
+      } catch(err){
+        console.log(err.response?.data || err.message)
+      }
     }
 
   if (!project) return <h2>Loading...</h2>;
