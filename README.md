@@ -105,6 +105,138 @@ Drag-and-drop task board (like Trello)
 Task due dates and priorities
 User collaboration (shared projects)
 Notifications system
+
+
+**🚧 Challenges & Lessons Learned**
+
+**1. Case Sensitivity Issues in Deployment**
+
+Challenge:
+During deployment on Netlify, the build failed due to unresolved imports. While everything worked locally, the production build could not locate files like TaskForm.jsx and TaskList.jsx.
+
+Cause:
+This was due to differences between operating systems:
+
+My local environment (macOS) is case-insensitive
+Netlify’s environment (Linux) is case-sensitive
+
+File names like taskForm.jsx did not match imports like TaskForm.jsx.
+
+Solution:
+I renamed all component files to follow consistent PascalCase naming (e.g., TaskForm.jsx, TaskList.jsx) and ensured imports matched exactly. I also used git mv to properly update file casing in the repository.
+
+What I Learned:
+
+File naming consistency is critical in cross-platform development
+Always test builds locally (npm run build) before deploying
+Understand differences between development and production environments
+
+**2. Dynamic Routing Conflicts**
+
+Challenge:
+I encountered backend errors like:
+
+Cast to ObjectId failed for value "dashboard"
+
+Cause:
+My frontend route was defined too broadly:
+
+/:id
+
+This caused routes like /dashboard and /register to be treated as project IDs.
+
+Solution:
+I updated my routes to be more specific:
+
+/projects/:id
+
+This ensured only valid project URLs triggered the project page.
+
+What I Learned:
+
+Avoid overly generic routes in React Router
+Always design routes with scalability and clarity in mind
+Frontend routing mistakes can break backend logic
+
+
+**3. Passing Incorrect Data in API Requests**
+
+Challenge:
+I received errors like:
+
+/projects/[object Object]/tasks
+
+Cause:
+I accidentally passed an object instead of a string ID in API calls.
+
+Solution:
+I corrected my function parameters to ensure only the project ID string was used when constructing API URLs.
+
+What I Learned:
+
+Be careful with function arguments and data types
+Debugging network requests is essential for full-stack apps
+Always log values when debugging (console.log)
+
+
+**4. State Management Issues**
+
+Challenge:
+I encountered errors like:
+
+tasks.map is not a function
+
+Cause:
+The tasks state was not always an array (sometimes overwritten incorrectly).
+
+Solution:
+I ensured:
+
+State is initialized correctly (useState([]))
+Updates maintain the correct structure (using arrays, not objects)
+
+What I Learned:
+
+State shape must remain consistent
+React errors often come from incorrect state updates
+Always validate data before rendering
+
+
+**5. Git & File Tracking Issues**
+
+Challenge:
+Some files worked locally but were missing in deployment.
+
+Cause:
+They were not committed or pushed to GitHub.
+
+Solution:
+I used:
+
+git add .
+git commit
+git push
+
+and verified files directly on GitHub.
+
+What I Learned:
+
+Deployment depends on your repository, not your local machine
+Always verify files exist in GitHub
+Git is a critical skill for real-world development
+
+**🎯 Overall Takeaways**
+
+Through building this project, I gained hands-on experience with:
+
+Full-stack debugging (frontend + backend)
+Real-world deployment issues
+React architecture and state management
+API integration and error handling
+Git and version control best practices
+
+This project significantly improved my ability to diagnose and solve complex issues in a production-like environment.
+
 👨‍💻 Author
 
 Sekouba CAMARA
