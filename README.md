@@ -63,13 +63,17 @@ This app uses JWT-based authentication:
 Token is stored in localStorage
 Sent in headers for protected routes:
 Authorization: Bearer <token>
+
 **📡 API Endpoints**
+
 👤 User Routes (/api/users)
 Method	Endpoint	Description
 POST	/register	Register a new user
 POST	/login	Login user and return JWT
 GET	/	Get current authenticated user
+
 **📁 Project Routes (/api/projects)**
+
 Method	Endpoint	Description
 GET	/	Get all projects for logged-in user
 POST	/	Create a new project
@@ -77,17 +81,21 @@ GET	/:id	Get a single project with tasks
 PUT	/:id	Update a project
 DELETE	/:id	Delete a project
 *✅ Task Routes (/api/projects/:projectId/tasks)*
+
 Method	Endpoint	Description
 POST	/	Create a new task in a project
 PUT	/:taskId	Update a task
 DELETE	/:taskId	Delete a task
 **🧠 Features**
+
 🔐 Secure authentication with JWT
 📁 Project management (CRUD)
 ✅ Task management within projects
 📊 Task status organization (Kanban-style)
 ⚡ Fast and responsive UI
+
 **🚧 Future Improvements**
+
 Drag-and-drop task board (like Trello)
 Task due dates and priorities
 User collaboration (shared projects)
