@@ -22,7 +22,7 @@ const getAllProjects = async (req, res) => {
 const getSingleProject = async (req, res) =>{
 
   try{
-    console.log("PROJECT ID:", req.params.id);
+    console.log("PROJECT ID:", req.params.id); 
     console.log("USER:", req.user);
 
     const project = await Project.findOne({_id: req.params.id, user: req.user._id})
