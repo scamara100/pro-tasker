@@ -100,7 +100,7 @@ Sekouba CAMARA
 
 This project is open-source and available under the MIT License.
 
-![Dashboard](./screenshots/dashboard.png)
-![Project Page](./screenshots/project-page.png)
-![Login](./screenshots/login.png)
-![Register](./screenshots/register.png)
+![Dashboard](./frontend/screenshots/dashboard.png)
+![Project Page](./frontend/screenshots/project-page.png)
+![Login](./frontend/screenshots/login.png)
+![Register](./frontend/screenshots/register.png)
