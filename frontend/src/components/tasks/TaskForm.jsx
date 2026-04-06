@@ -52,7 +52,7 @@ export default function TaskForm({ onAdd }) {
         <option value="in-progress">In Progress</option>
         <option value="done">Done</option>
       </select>
-      <button>Add Task</button>
+      <button type="submit">Add Task</button>
     </form>
   );
 }
