@@ -16,6 +16,11 @@ Organize tasks by status (To Do, In Progress, Done)
 
 This app demonstrates full-stack development using modern technologies including React, Node.js, Express, and MongoDB.
 
+**🌐 Live Demo**
+
+👉 The URL for my deployed backend web service on Render: https://pro-tasker-14a3.onrender.com
+👉 The URL for your deployed frontend static site on Netlify: https://pro-tasker100.netlify.app/login
+
 **🛠️ Tech Stack**
 Frontend
 React (Vite)
