@@ -1,10 +1,12 @@
 import axios from 'axios'
 
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export const getToken = () => localStorage.getItem('token') 
 
 // create axios instance
 export const userClient = axios.create({
-    baseURL: 'http://localhost:8080/api/users',
+    baseURL: BASE_URL + '/api/users',
     headers: {
         Authorization: `Bearer ${getToken()}`
     }
@@ -19,7 +21,7 @@ userClient.interceptors.request.use((req) => {
 });
 
 export const projectClient = axios.create({
-    baseURL: 'http://localhost:8080/api/projects'
+    baseURL: `${BASE_URL}/api/projects`
 })
 
 projectClient.interceptors.request.use((req) =>{
