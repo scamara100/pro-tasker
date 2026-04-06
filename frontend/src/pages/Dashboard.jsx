@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { projectClient } from "../clients/api";
-import ProjectForm from "../components/projects/ProjectForm";
-import ProjectList from "../components/projects/ProjectList";
+import { projectClient } from "../clients/api.js";
+import ProjectForm from "../components/projects/ProjectForm.jsx";
+import ProjectList from "../components/projects/ProjectList.jsx";
 
 
 

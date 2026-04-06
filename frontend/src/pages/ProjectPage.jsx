@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { projectClient } from "../clients/api";
-import TaskForm from "../components/tasks/taskForm";
-import TaskList from "../components/tasks/taskList";
+import { projectClient } from "../clients/api.js";
+import TaskForm from "../components/tasks/TaskForm.jsx";
+import TaskList from "../components/tasks/TaskList.jsx";
 
 function ProjectPage() {
   const { id } = useParams();
